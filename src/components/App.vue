@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1> LUGDUNUM DEVELOPER STUDIO </h1>
     <p class="username">{{ user.username }}'s posts:</p>
     <ul>
       <li v-for="post in posts" :key="post.id">{{ post.content }}</li>
@@ -8,6 +9,7 @@
       <input v-model="newPostContent">
       <button @click="addPost()">Add Post</button>
     </div>
+    <nav></nav>
   </div>
 </template>
 

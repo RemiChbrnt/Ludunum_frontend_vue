@@ -29,7 +29,7 @@
     "poi": "^9.0.0",
     "poi-preset-bundle-report": "^2.0.0",
     "poi-preset-offline": "^9.0.0",
-    "serve": "^6.1.0",
+    "serve": "^11.3.2",
     "vue": "^2.6.12"
   }
 }
