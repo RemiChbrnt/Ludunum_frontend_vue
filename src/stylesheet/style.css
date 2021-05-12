@@ -1,0 +1,22 @@
+nav{
+  #background-color: lightblue;
+  height: 70px;
+}
+body{
+  background-color: chocolate;
+  flex-direction: column;
+  justify-content: center;
+}
+img{
+  width: 100px;
+}
+
+logo {
+  width: 1008px;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+}
+.logo img {
+  width: 100%;
+}

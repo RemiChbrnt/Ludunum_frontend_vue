@@ -1,8 +1,9 @@
-import Vue from "vue"
-import App from './components/App.vue'
+import Vue from "vue";
+import App from './components/App.vue';
 
-import ApolloClient from 'apollo-boost'
+import ApolloClient from 'apollo-boost';
 import VueApollo from "vue-apollo";
+
 
 const apolloProvider = new VueApollo({
   defaultClient: new ApolloClient({
@@ -17,3 +18,5 @@ new Vue({
   apolloProvider, // add option
   render: h => h(App)
 })
+
+

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/lugdunum_icon_192x192.png">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title></title>
 
-    
+
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4DBA87">
-    
+
 
     <% if (htmlWebpackPlugin.options.description) { %>
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
@@ -18,12 +19,12 @@
     <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
-    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+    <link rel="stylesheet" href="./src/stylesheet/style.css"><% }}} %>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="app"></div>
+    <div id="app"> </div>
   </body>
 </html>

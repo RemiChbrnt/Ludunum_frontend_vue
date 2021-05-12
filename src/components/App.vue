@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <h1> LUGDUNUM DEVELOPER STUDIO </h1>
+    <nav></nav>
+    <logo>
+      <img src = "./img/Lugdunum_logo.png" alt="lugdunum logo">
+    </logo>
+
     <p class="username">{{ user.username }}'s posts:</p>
     <ul>
       <li v-for="post in posts" :key="post.id">{{ post.content }}</li>
