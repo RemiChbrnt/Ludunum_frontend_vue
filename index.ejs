@@ -19,7 +19,9 @@
     <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
-    <link rel="stylesheet" href="./src/stylesheet/style.css"><% }}} %>
+    <link rel="stylesheet" href="./src/stylesheet/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+    <% }}} %>
   </head>
   <body>
     <noscript>
