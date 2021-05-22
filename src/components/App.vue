@@ -53,7 +53,7 @@ export default {
     user: {
       query: GET_USER,
       variables() {
-        return {id: "609aaf7b319f02436c55b537"}
+        return {id: "60a93859b639ab41f858724a"}
       },
     },
   }
