@@ -13,10 +13,10 @@
     <nav>
       <input v-model="usernameContent">
       <input v-model="passwordContent">
-      <button @click="">Log In</button>
+      <button class="button" @click=""><span>Log In </span></button>
 
-      <button @click="createUser()">Sign In</button>
-        <button @click="createUser()"></button>
+      <button class="button" @click="createUser()"><span>Sign In </span></button>
+        <button class="button" @click="Map.vue"><span>Go to MAP </span></button>
     </nav>
   </div>
 </template>
