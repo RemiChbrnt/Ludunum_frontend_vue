@@ -38,6 +38,7 @@ input {
   background-color: transparent;
 }
 
+/* button======================================================== */
 button {
   height: 80%;
   background-color: antiquewhite;
@@ -45,7 +46,7 @@ button {
   color: darkblue;
   text-align: center;
   font-family: 'Open-Sans', sans-serif;
-  font-size:1vw;
+  font-size:1.5vw;
   padding-left: 15px;
   padding-right: 15px;
   transition: all 0.5s;

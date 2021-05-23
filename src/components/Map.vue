@@ -1,5 +1,5 @@
 <template>
-  <div id="map">
+  <div>
     <div class="upper_container">
       <img class="upper_container" src ="./img/Lugdunum_logo.png" alt="lugdunum logo">
       <h1 class="upper_container" >Website for Subscription and Statistics</h1>
@@ -10,10 +10,5 @@
 
 <script>
 export default {
-name: "Map.vue"
 }
 </script>
-
-<style scoped>
-
-</style>

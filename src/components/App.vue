@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div id="app">
     <div class="upper_container">
       <img class="upper_container" src ="./img/Lugdunum_logo.png" alt="lugdunum logo">
@@ -16,8 +16,10 @@
       <button class="button" @click=""><span>Log In </span></button>
 
       <button class="button" @click="createUser()"><span>Sign In </span></button>
-        <button class="button" @click="Map.vue"><span>Go to MAP </span></button>
     </nav>
+    <div>
+      <a href="/map" class="item">Map</a>
+    </div>
   </div>
 </template>
 
@@ -39,6 +41,9 @@ export default {
     }
   },
   methods: {
+    goToMap() {
+      this.$router.push('map');
+    },
     addPost() {
       this.posts.push({ content: this.newPostContent })
       this.newPostContent = '';
