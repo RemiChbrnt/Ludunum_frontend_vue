@@ -16,6 +16,7 @@
       <button @click="">Log In</button>
 
       <button @click="createUser()">Sign In</button>
+        <button @click="createUser()"></button>
     </nav>
   </div>
 </template>
