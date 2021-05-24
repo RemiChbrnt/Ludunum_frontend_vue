@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/lugdunum_icon_192x192.png">
+    <div id="loadPage" style="background-color:white; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;"></div>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -16,12 +16,8 @@
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
     <% } %>
 
-    <% for (var chunk of webpack.chunks) {
-        for (var file of chunk.files) {
-          if (file.match(/\.(js|css)$/)) { %>
     <link rel="stylesheet" href="./src/stylesheet/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-    <% }}} %>
   </head>
   <body>
     <noscript>
