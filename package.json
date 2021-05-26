@@ -24,7 +24,8 @@
     "offline-plugin": "^4.8.0",
     "promise-polyfill": "^6.0.2",
     "vue-apollo": "^3.0.7",
-    "vue-router": "^3.0.0"
+    "vue-router": "^3.0.0",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "poi": "^9.0.0",

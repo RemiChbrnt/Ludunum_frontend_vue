@@ -1,11 +1,9 @@
 import Vue from "vue";
-import App from './components/LogIn.vue';
-import Map from './components/Map.vue';
-import HomePage from './components/App.vue';
 
 import ApolloClient from 'apollo-boost';
 import VueApollo from "vue-apollo";
 import VueRouter from "vue-router";
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 
 const apolloProvider = new VueApollo({
@@ -16,7 +14,11 @@ const apolloProvider = new VueApollo({
 
 Vue.use(VueApollo); // use middleware
 Vue.use(VueRouter);
-
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDn7CoqkAKD1fD1m8aWCsipfmt6rnrBK4g'
+  },
+});
 
 
 const router = new VueRouter({

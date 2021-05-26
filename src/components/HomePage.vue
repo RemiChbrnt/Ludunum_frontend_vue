@@ -1,16 +1,15 @@
 <template>
   <div>
-    <mascotte>
+    <div class="mascotte">
       <h1> WELCOME !</h1>
       <img class="mascotte" src="./img/mascotte_00.png" alt="mascotte rhino">
 
-    </mascotte>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HomePage"
 }
 </script>
 

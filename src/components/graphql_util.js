@@ -13,3 +13,11 @@ export const REGISTER_USER = gql`mutation ($username: String!, $password: String
     password
   }
 }`;
+
+export const GET_LOCALIZATIONS = gql`query {
+  localizations{
+    id
+    lat
+    long
+  }
+}`;
