@@ -1,5 +1,8 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div id="login">
+    <div class="mascotte">
+      <img class="mascotte" src="./img/mascotte_02.png" alt="mascotte rhino">
+    </div>
     <p class="username">{{ user.username }}'s posts:</p>
     <div class="loginStuff">
       <input v-model="usernameContent">
@@ -7,9 +10,6 @@
       <button class="button" @click=""><span>Log In </span></button>
 
       <button class="button" @click="createUser()"><span>Sign In </span></button>
-    </div>
-    <div>
-      <a href="/map" class="item">Map</a>
     </div>
   </div>
 </template>

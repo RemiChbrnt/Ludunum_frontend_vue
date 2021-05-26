@@ -4,6 +4,8 @@ body{
   flex-direction: column;
   justify-content: center;
 }
+
+
 /* Upper Container ==================================================================================*/
 div.upper_container {
   padding: 0.5%;
@@ -54,9 +56,9 @@ input[type=button]{
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
-  transition: all 0.5s;
+  transition: all 0.1s;
   cursor: pointer;
-  margin: 0 5px;
+  margin: 2%;
   box-shadow: 0 5px #000000B0;
 }
 
@@ -66,7 +68,7 @@ input[type=button]{
 .button:active {
   background-color: #94a9be;
   box-shadow: 0 2px #000000B0;
-  transform: translateY(8px);
+  transform: translateY(4px);
 }
 
 div.loginStuff {
@@ -81,12 +83,17 @@ div.loginStuff {
   flex-direction: column;
 }
 
+div.loginButtons{
+
+}
+
 input {
   align-self: center;
   padding-left: 15px;
   padding-right: 15px;
+  margin-bottom: 2%;
   font-size: 1.3vw;
-  background-color: transparent;
+  background-color: #70809080;
 }
 
 h1 {
@@ -95,7 +102,7 @@ h1 {
   font-family: 'Open-Sans', sans-serif;
   font-size:1.5vw;
 }
-
+/* Mascotte========================================================================*/
 div.mascotte {
   position: fixed;
   bottom: 0;
