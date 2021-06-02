@@ -2,7 +2,13 @@
   <div id="map">
     <h1> LUGDUNUM MAP </h1>
     <div class="mascotte">
-      <img class="mascotte" src="./img/mascotte_01.png" alt="mascotte rhino">
+      <input v-model="year">
+      <input v-model="day">
+      <input v-model="hour">
+      <input v-model="minute">
+      <input type="datetime-local" name="startDate" v-model="dateStart">
+      <button class="button" @click="calculateDate()"><span>TEST</span></button>
+      <p > test : {{ dateStart }}</p>
     </div>
     <GmapMap
       :center="{lat:45.7484600, lng:4.8467100}"
@@ -35,12 +41,18 @@ export default {
       localizations: [
         {lat: 45.7484600, long: 4.8467100, id: 0},
         {lat: 45.7784600, long: 4.8467100, id: 1}],
+      dateStart: new Date()
     }
+
   },
   methods: {
-    getMarkerInfo() {
-
-    }
+    calculateDate() {
+      const min= 1000 * 60;
+      const h = min * 60;
+      const d = h * 24;
+      const y = d * 365.25;
+      this.dateAsInt = ((this.year-1970) * y + this.day * d + this.hour * h + this.minute * min);
+    },
 
   },
   apollo: {
