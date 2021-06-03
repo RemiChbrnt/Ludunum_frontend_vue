@@ -19,5 +19,6 @@ export const GET_LOCALIZATIONS = gql`query {
     id
     lat
     long
+    createdAt
   }
 }`;

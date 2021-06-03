@@ -3,13 +3,12 @@
     <div class="mascotte">
       <img class="mascotte" src="./img/mascotte_02.png" alt="mascotte rhino">
     </div>
-    <p class="username">{{ user.username }}'s posts:</p>
     <div class="loginStuff">
       <input v-model="usernameContent">
       <input v-model="passwordContent">
-      <button class="button" @click=""><span>Log In </span></button>
+      <button class="button" @click=""><span>Se Connecter </span></button>
 
-      <button class="button" @click="createUser()"><span>Sign In </span></button>
+      <button class="button" @click="createUser()"><span>S'enregistrer</span></button>
     </div>
   </div>
 </template>
@@ -24,8 +23,8 @@ export default {
   data: function(){
     return {
       user: { username: 'user' },
-      usernameContent: 'Username',
-      passwordContent: 'Password'
+      usernameContent: 'Nom d\'utilisateur',
+      passwordContent: 'Mot de Passe'
     }
   },
   methods: {

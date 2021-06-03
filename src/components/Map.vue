@@ -1,14 +1,12 @@
 <template>
   <div id="map">
-    <h1> LUGDUNUM MAP </h1>
+    <h1> CARTE LUGDUNUM </h1>
     <div class="mascotte">
-      <input v-model="year">
-      <input v-model="day">
-      <input v-model="hour">
-      <input v-model="minute">
       <input type="datetime-local" name="startDate" v-model="dateStart">
-      <button class="button" @click="calculateDate()"><span>TEST</span></button>
-      <p > test : {{ dateStart }}</p>
+      <input type="datetime-local" name="endDate" v-model="dateEnd">
+      <button class="button" @click="filterLocalizations()"><span>FILTRER</span></button>
+      <p > test : {{ Date.parse(dateStart) }}, {{ Date.parse(dateEnd) }}</p>
+      <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
     </div>
     <GmapMap
       :center="{lat:45.7484600, lng:4.8467100}"
@@ -18,11 +16,11 @@
     >
       <GmapMarker
         :key="m.id"
-        v-for="m in localizations"
+        v-for="m in filteredLocalizations"
         :position="{ lat: m.lat, lng: m.long }"
         :clickable="true"
         :draggable="false"
-        @click="getMarkerInfo()"
+        @click="getMarkerInfo(m)"
       />
     </GmapMap>
   </div>
@@ -39,20 +37,30 @@ export default {
     return {
       user: { username: 'user' },
       localizations: [
-        {lat: 45.7484600, long: 4.8467100, id: 0},
-        {lat: 45.7784600, long: 4.8467100, id: 1}],
-      dateStart: new Date()
+        {lat: 45.7484600, long: 4.8467100, id: 0, createdAt: 0},
+        {lat: 45.7784600, long: 4.8467100, id: 1, createdAt: 0}],
+      filteredLocalizations: [],
+      dateStart: new Date(),
+      dateEnd: new Date()
     }
 
   },
   methods: {
-    calculateDate() {
-      const min= 1000 * 60;
-      const h = min * 60;
-      const d = h * 24;
-      const y = d * 365.25;
-      this.dateAsInt = ((this.year-1970) * y + this.day * d + this.hour * h + this.minute * min);
+    filterLocalizations() {
+      this.filteredLocalizations = [];
+      let ds = Date.parse(this.dateStart);
+      let de = Date.parse(this.dateEnd);
+      for (let i=0; i<this.localizations.length; i++){
+        if ((ds <= this.localizations[i].createdAt)&&(this.localizations[i].createdAt <= de)) {
+          console.log(this.localizations[i].createdAt);
+          this.filteredLocalizations.push(this.localizations[i]);
+          console.log(this.filteredLocalizations[0].lat);
+        }
+      }
     },
+    getMarkerInfo: function ({createdAt}) {
+      console.log(createdAt);
+    }
 
   },
   apollo: {
