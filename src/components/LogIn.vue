@@ -6,9 +6,10 @@
     <div class="loginStuff">
       <input v-model="usernameContent">
       <input v-model="passwordContent">
-      <button class="button" @click=""><span>Se Connecter </span></button>
+      <button class="button" @click="loginUser()"><span>Se Connecter </span></button>
 
       <button class="button" @click="createUser()"><span>S'enregistrer</span></button>
+      <p> {{ loginID }} </p>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@
 <script>
 import {
   GET_USER,
+  LOGIN,
   REGISTER_USER
 } from "./graphql_util.js"
 
@@ -24,26 +26,38 @@ export default {
     return {
       user: { username: 'user' },
       usernameContent: 'Nom d\'utilisateur',
-      passwordContent: 'Mot de Passe'
+      passwordContent: 'Mot de Passe',
+      loginID: -1
     }
   },
   methods: {
-    addPost() {
-      this.posts.push({ content: this.newPostContent })
-      this.newPostContent = '';
-    },
     createUser(){
       this.$apollo.mutate({
         mutation: REGISTER_USER,
         variables: { username: this.usernameContent, password: this.passwordContent },
+      });
+    },
+    loginUser(){
+      this.$apollo.query({
+        query: LOGIN,
+        variables: {username: this.usernameContent, password: this.passwordContent},
       })
+        .then(result => {
+          console.log(result.data);
+          this.loginID = 'Ok';
+      })
+        .catch(err => {
+          console.log(err);
+          this.loginID = 'Error';
+        });
     }
   },
   apollo: {
     user: {
       query: GET_USER,
       variables: { id: "60a93859b639ab41f858724a"}
-    },
+    }
   },
+
 }
 </script>

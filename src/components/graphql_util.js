@@ -19,6 +19,11 @@ export const GET_LOCALIZATIONS = gql`query {
     id
     lat
     long
+    userId
     createdAt
   }
 }`;
+
+export const LOGIN = gql `query ($username: String!, $password: String!) {
+  login(username: $username, password: $password)
+}`

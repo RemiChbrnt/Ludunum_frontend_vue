@@ -1,28 +1,40 @@
 <template>
   <div id="map">
     <h1> CARTE LUGDUNUM </h1>
-    <div class="mascotte">
-      <input type="datetime-local" name="startDate" v-model="dateStart">
-      <input type="datetime-local" name="endDate" v-model="dateEnd">
-      <button class="button" @click="filterLocalizations()"><span>FILTRER</span></button>
-      <p > test : {{ Date.parse(dateStart) }}, {{ Date.parse(dateEnd) }}</p>
-      <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
+    <div class="map">
+      <GmapMap
+        :center="{lat:45.7484600, lng:4.8467100}"
+        :zoom="13"
+        map-type-id="terrain"
+        style="padding-left: 5%; width: 125%; height: 700px;"
+        >
+        <GmapMarker
+          :key="m.id"
+          v-for="m in filteredLocalizations"
+          :position="{ lat: m.lat, lng: m.long }"
+          :clickable="true"
+          :draggable="false"
+          @click="getMarkerInfo(m)"
+        />
+      </GmapMap>
+      <div class="settings">
+        <div style="align-self: center;">
+          <h1>Filtrer les positions des joueurs</h1>
+        </div>
+        <div class="dateSelector">
+          <h1 style="width: 10%;"> De: </h1>
+          <input type="datetime-local" name="startDate" v-model="dateStart">
+        </div>
+        <div class="dateSelector">
+          <h1 style="width: 10%;"> A: </h1>
+          <input type="datetime-local" name="endDate" v-model="dateEnd">
+        </div>
+
+        <button class="button" @click="filterLocalizations()"><span>FILTRER</span></button>
+        <p > test : {{ Date.parse(dateStart) }}, {{ Date.parse(dateEnd) }}</p>
+        <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
+      </div>
     </div>
-    <GmapMap
-      :center="{lat:45.7484600, lng:4.8467100}"
-      :zoom="13"
-      map-type-id="terrain"
-      style="padding-left: 5%; width: 65%; height: 700px;"
-    >
-      <GmapMarker
-        :key="m.id"
-        v-for="m in filteredLocalizations"
-        :position="{ lat: m.lat, lng: m.long }"
-        :clickable="true"
-        :draggable="false"
-        @click="getMarkerInfo(m)"
-      />
-    </GmapMap>
   </div>
 </template>
 
@@ -37,8 +49,8 @@ export default {
     return {
       user: { username: 'user' },
       localizations: [
-        {lat: 45.7484600, long: 4.8467100, id: 0, createdAt: 0},
-        {lat: 45.7784600, long: 4.8467100, id: 1, createdAt: 0}],
+        {lat: 45.7484600, long: 4.8467100, id: 0, createdAt: ''},
+        {lat: 45.7784600, long: 4.8467100, id: 1, createdAt: ''}],
       filteredLocalizations: [],
       dateStart: new Date(),
       dateEnd: new Date()

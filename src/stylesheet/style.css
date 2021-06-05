@@ -83,10 +83,6 @@ div.loginStuff {
   flex-direction: column;
 }
 
-div.loginButtons{
-
-}
-
 input {
   align-self: center;
   padding-left: 15px;
@@ -116,5 +112,25 @@ img.mascotte{
   object-fit:scale-down;
 }
 
+div.map{
+  display: flex;
+  flex-direction: row;
+}
+
+
+div.settings{
+  background-color: #a0522dB9;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+div.dateSelector{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+}
 
 #loadPage{display: none;}
