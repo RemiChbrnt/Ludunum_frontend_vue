@@ -30,12 +30,15 @@
           <input type="datetime-local" name="endDate" v-model="dateEnd">
         </div>
 
-        <button class="button" @click="filterLocalizations()"><span>FILTRER</span></button>
-        <p style="align-self: center; font-size: 100%">
-          Joueurs connectés entre le {{ dateStart.getDate() }}/{{ dateStart.getMonth()+1 }}/{{ dateStart.getFullYear() }}
-          à {{ dateStart.getHours()}}:{{ dateStart.getMinutes()}}
-          et le {{ dateEnd.getDate() }}/{{ dateEnd.getMonth()+1 }}/{{ dateEnd.getFullYear() }}
-          à {{ dateEnd.getHours()}}:{{ dateEnd.getMinutes()}}</p>
+        <button class="button" @click="filterLocalizations()"><span>AFFICHER</span></button>
+        <div style="background-color: #faebd780 ; align-self: center; margin-top: 5%">
+          <h1 style="text-align: center">Affichage des...</h1>
+          <p style="align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
+            ... Joueurs connectés entre le
+            <br> {{ convertDate2String(new Date(dateStart)) }}
+            <br> et le {{ convertDate2String(new Date(dateEnd)) }}</p>
+        </div>
+
         <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
       </div>
     </div>
@@ -46,6 +49,7 @@
 import {
   GET_USER,
   GET_LOCALIZATIONS,
+  LOGIN,
 } from "./graphql_util.js"
 
 export default {
@@ -76,7 +80,28 @@ export default {
     },
     getMarkerInfo: function ({createdAt}) {
       console.log(createdAt);
+    },
+    convertDate2String(d){
+      let day = d.getDate();
+      if (day < 10){
+        day = "0" + day.toString();
+      }
+      let month = d.getMonth()+1;
+      if (month < 10){
+        month = "0" + month.toString();
+      }
+      let hour = d.getHours();
+      if (hour < 10) {
+        hour = "0" + hour.toString();
+      }
+      let minute = d.getMinutes();
+      if (minute < 10) {
+        minute = "0" + minute.toString();
+      }
+      return day + "/" + month + "/" + d.getFullYear()
+      + " à " + hour + ":" + minute;
     }
+
 
   },
   apollo: {
