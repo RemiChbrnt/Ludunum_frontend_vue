@@ -15,7 +15,7 @@
           :clickable="true"
           :draggable="false"
           @click="getMarkerInfo(m)"
-        />marker.addListener("click", toggleBounce);
+        />.addListener="click, toggleBounce"
       </GmapMap>
       <div class="settings">
         <div style="align-self: center;">
@@ -40,24 +40,34 @@
         </div>
 
         <div style="width: 90%; align-self: center; margin-top: 5%">
-          <p style="background-color: #faebd780; align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
-          Marqueur sélectionné
-          </p>
-          <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%">
-            ID Utilisateur: {{ selectedMarker.userId }}
-            <br> Date: {{ dateSelectedMarker }}
-            <br> Longitude: {{ selectedMarker.lng }}
-            <br> Latitude: {{ selectedMarker.lat }}
-          </p>
+          <div>
+            <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%; margin-top: 2%">
+              Nombre de localisations: {{ filteredLocalizations.length }}
+              <br> Nombre de joueurs différents: {{ nbUsers }}
+            </p>
+          </div>
+          <div>
+            <p style="background-color: #faebd780; align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
+            Marqueur sélectionné
+            </p>
+          </div>
+          <div>
+            <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%">
+              ID Utilisateur: {{ selectedMarker.userId }}
+              <br> Date: {{ dateSelectedMarker }}
+              <br> Longitude: {{ selectedMarker.lng }}
+              <br> Latitude: {{ selectedMarker.lat }}
+            </p>
+          </div>
         </div>
-
-        <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.id }}</li>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
+
 import {
   GET_USER,
   GET_LOCALIZATIONS,
@@ -75,20 +85,31 @@ export default {
       dateStart: new Date('01/01/2021'),
       dateEnd: new Date(),
       selectedMarker: {lat: null, lng: null, userId: null, createdAt: new Date()},
-      dateSelectedMarker: ''
+      dateSelectedMarker: '',
+      nbUsers: 0
     }
-
   },
   methods: {
     filterLocalizations() {
       this.filteredLocalizations = [];
       let ds = Date.parse(this.dateStart);
       let de = Date.parse(this.dateEnd);
-      for (let i=0; i<this.localizations.length; i++){
-        if ((ds <= this.localizations[i].createdAt)&&(this.localizations[i].createdAt <= de)) {
-          console.log(this.localizations[i].createdAt);
+      for (let i = 0; i < this.localizations.length; i++) {
+        if ((ds <= this.localizations[i].createdAt) && (this.localizations[i].createdAt <= de)) {
           this.filteredLocalizations.push(this.localizations[i]);
-          console.log(this.filteredLocalizations[0].lat);
+        }
+      }
+      this.calcNumberUsers();
+    },
+    calcNumberUsers(){
+      this.nbUsers = 0;
+      let usersFound = []
+      console.log("wtffffffffffffff");
+      for (let i=0; i<this.filteredLocalizations.length; i++){
+        if(usersFound.indexOf(this.filteredLocalizations[i].userId) == -1) {
+          this.nbUsers += 1;
+          console.log(i);
+          usersFound.push(this.filteredLocalizations[i].userId);
         }
       }
     },
@@ -96,13 +117,13 @@ export default {
       this.selectedMarker = m;
       this.dateSelectedMarker = this.convertDate2String(new Date(parseInt(m.createdAt)));
     },
-    convertDate2String(d){
+    convertDate2String(d) {
       let day = d.getDate();
-      if (day < 10){
+      if (day < 10) {
         day = "0" + day.toString();
       }
-      let month = d.getMonth()+1;
-      if (month < 10){
+      let month = d.getMonth() + 1;
+      if (month < 10) {
         month = "0" + month.toString();
       }
       let hour = d.getHours();
@@ -114,10 +135,8 @@ export default {
         minute = "0" + minute.toString();
       }
       return day + "/" + month + "/" + d.getFullYear()
-      + " à " + hour + ":" + minute;
+        + " à " + hour + ":" + minute;
     }
-
-
   },
   apollo: {
     localizations: {
