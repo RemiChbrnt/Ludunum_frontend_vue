@@ -31,7 +31,11 @@
         </div>
 
         <button class="button" @click="filterLocalizations()"><span>FILTRER</span></button>
-        <p > test : {{ Date.parse(dateStart) }}, {{ Date.parse(dateEnd) }}</p>
+        <p style="align-self: center; font-size: 100%">
+          Joueurs connectés entre le {{ dateStart.getDate() }}/{{ dateStart.getMonth()+1 }}/{{ dateStart.getFullYear() }}
+          à {{ dateStart.getHours()}}:{{ dateStart.getMinutes()}}
+          et le {{ dateEnd.getDate() }}/{{ dateEnd.getMonth()+1 }}/{{ dateEnd.getFullYear() }}
+          à {{ dateEnd.getHours()}}:{{ dateEnd.getMinutes()}}</p>
         <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
       </div>
     </div>
@@ -52,8 +56,8 @@ export default {
         {lat: 45.7484600, long: 4.8467100, id: 0, createdAt: ''},
         {lat: 45.7784600, long: 4.8467100, id: 1, createdAt: ''}],
       filteredLocalizations: [],
-      dateStart: new Date(),
-      dateEnd: new Date()
+      dateStart: new Date('01/01/2021'),
+      dateEnd: new Date(),
     }
 
   },
@@ -79,6 +83,6 @@ export default {
     localizations: {
       query: GET_LOCALIZATIONS,
     },
-  },
+  }
 }
 </script>
