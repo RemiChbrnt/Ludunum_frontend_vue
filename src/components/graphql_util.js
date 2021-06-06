@@ -18,7 +18,7 @@ export const GET_LOCALIZATIONS = gql`query {
   localizations{
     id
     lat
-    long
+    lng
     userId
     createdAt
   }
@@ -28,11 +28,11 @@ export const LOGIN = gql `query ($username: String!, $password: String!) {
   login(username: $username, password: $password)
 }`
 
-export const ADD_LOCALIZATION = gql`mutation ($long: Float!, $lat: Float!, $userId: ID!) {
-  addLocalization(long: $long, lat: $lat, userId: $userId) {
+export const ADD_LOCALIZATION = gql`mutation ($lng: Float!, $lat: Float!, $userId: ID!) {
+  addLocalization(lng: $lng, lat: $lat, userId: $userId) {
     id
     lat
-    long
+    lng
     userId
   }
 }`;

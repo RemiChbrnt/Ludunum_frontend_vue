@@ -28,11 +28,6 @@ const router = new VueRouter({
       path: '/login',
       component: require('./components/LogIn.vue').default,
       name: 'login',
-      children: [{
-        path: ':userId',
-        //component: require('./components/LogInSuccess.vue').default,
-        name: 'loginSuccess'
-      }]
     },
     {
       path: '/map',

@@ -11,11 +11,11 @@
         <GmapMarker
           :key="m.id"
           v-for="m in filteredLocalizations"
-          :position="{ lat: m.lat, lng: m.long }"
+          :position="{ lat: m.lat, lng: m.lng }"
           :clickable="true"
           :draggable="false"
           @click="getMarkerInfo(m)"
-        />
+        />marker.addListener("click", toggleBounce);
       </GmapMap>
       <div class="settings">
         <div style="align-self: center;">
@@ -31,7 +31,7 @@
         </div>
 
         <button class="button" @click="filterLocalizations()"><span>AFFICHER</span></button>
-        <div style="background-color: #faebd780 ; align-self: center; margin-top: 5%">
+        <div style="width: 90%; background-color: #faebd780 ; align-self: center; margin-top: 5%">
           <h1 style="text-align: center">Affichage des...</h1>
           <p style="align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
             ... Joueurs connectés entre le
@@ -39,7 +39,19 @@
             <br> et le {{ convertDate2String(new Date(dateEnd)) }}</p>
         </div>
 
-        <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.createdAt }}</li>
+        <div style="width: 90%; align-self: center; margin-top: 5%">
+          <p style="background-color: #faebd780; align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
+          Marqueur sélectionné
+          </p>
+          <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%">
+            ID Utilisateur: {{ selectedMarker.userId }}
+            <br> Date: {{ dateSelectedMarker }}
+            <br> Longitude: {{ selectedMarker.lng }}
+            <br> Latitude: {{ selectedMarker.lat }}
+          </p>
+        </div>
+
+        <li v-for="loc in filteredLocalizations" :key="loc.id">{{ loc.id }}</li>
       </div>
     </div>
   </div>
@@ -57,11 +69,13 @@ export default {
     return {
       user: { username: 'user' },
       localizations: [
-        {lat: 45.7484600, long: 4.8467100, id: 0, createdAt: ''},
-        {lat: 45.7784600, long: 4.8467100, id: 1, createdAt: ''}],
+        {lat: 45.7484600, lng: 4.8467100, id: 0, createdAt: ''},
+        {lat: 45.7784600, lng: 4.8467100, id: 1, createdAt: ''}],
       filteredLocalizations: [],
       dateStart: new Date('01/01/2021'),
       dateEnd: new Date(),
+      selectedMarker: {lat: null, lng: null, userId: null, createdAt: new Date()},
+      dateSelectedMarker: ''
     }
 
   },
@@ -78,8 +92,9 @@ export default {
         }
       }
     },
-    getMarkerInfo: function ({createdAt}) {
-      console.log(createdAt);
+    getMarkerInfo(m) {
+      this.selectedMarker = m;
+      this.dateSelectedMarker = this.convertDate2String(new Date(parseInt(m.createdAt)));
     },
     convertDate2String(d){
       let day = d.getDate();

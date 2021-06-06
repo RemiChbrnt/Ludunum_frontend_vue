@@ -9,7 +9,7 @@
       <button class="button" @click="loginUser()"><span>Se Connecter </span></button>
 
       <button class="button" @click="createUser()"><span>S'enregistrer</span></button>
-      <p> {{ loginID }} </p>
+      <p style="align-self: center; text-align: center; background-color: #faebd7B0; margin: 5%; color: #580000"> {{ loginMessage }} </p>
     </div>
   </div>
 </template>
@@ -27,7 +27,8 @@ export default {
       user: { username: 'user' },
       usernameContent: 'Nom d\'utilisateur',
       passwordContent: 'Mot de Passe',
-      loginID: -1
+      loginID: -1,
+      loginMessage: ''
     }
   },
   methods: {
@@ -43,19 +44,34 @@ export default {
         variables: {username: this.usernameContent, password: this.passwordContent},
       })
         .then(result => {
-          console.log(result.data);
-          this.loginID = 'Ok';
+          // if password is wrong:
+          if(result.data.login == 2) {
+            this.loginMessage = "Mot de Passe Incorrect, veuillez vérifier vos identifiants"
+          // if username is not in Database
+          }else if(result.data.login == 1){
+            this.loginMessage = "Nom d'utilisateur Incorrect, veuillez vérifier vos identifiants ou inscrivez-vous avec le bouton [S'enregistrer]"
+          }else{
+            this.loginMessage = "Connexion effectuée avec succès !"
+            this.loginID = result.data.login;
+            this.getUser();
+          }
       })
         .catch(err => {
           console.log(err);
-          this.loginID = 'Error';
+          this.loginID = err.data;
         });
-    }
-  },
-  apollo: {
-    user: {
-      query: GET_USER,
-      variables: { id: "60a93859b639ab41f858724a"}
+    },
+    getUser(){
+      this.$apollo.query({
+        query: GET_USER,
+        variables: {id: this.loginID},
+      })
+        .then(result => {
+          console.log(result.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
 
