@@ -8,7 +8,7 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 
 const apolloProvider = new VueApollo({
   defaultClient: new ApolloClient({
-    uri: 'http://localhost:3000/graphql'
+    uri: 'https://lugdunum.herokuapp.com/graphql'
   })
 });
 
@@ -26,15 +26,18 @@ const router = new VueRouter({
   routes: [
     {
       path: '/login',
-      component: require('./components/LogIn.vue').default
+      component: require('./components/LogIn.vue').default,
+      name: 'login',
     },
     {
       path: '/map',
-      component: require('./components/Map.vue').default
+      component: require('./components/Map.vue').default,
+      name: 'map'
     },
     {
       path: '/',
-      component: require('./components/HomePage.vue').default
+      component: require('./components/HomePage.vue').default,
+      name: 'root'
     },
     {
       //default route
