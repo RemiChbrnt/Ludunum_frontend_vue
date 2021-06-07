@@ -4,7 +4,7 @@
       <h1> QUI SOMMES-NOUS ? </h1>
       <p style= "align-self: center; text-align: justify; font-size: 140%; padding: 5%">&emsp;&emsp; Salutations distinguées cher visiteur !
         <br><br>&emsp;&emsp;Nous sommes étudiants à l'INSA (Institut National des Sciences Appliquées) de Lyon, dans le département télécommunications.
-        <br>&emsp;&emsp;Dans le cadre de nos études, nous avons développé un jeu mobile ayant pour objectif de faire visiter les lieux les plus emblématiques de la ville de Lyon. Tout en vous faisant découvrir les merveilles de la ville, vous serez transportés dans une histoire imaginée par nos scénaristes. En espérant que vous apprécierez la ville et notre jeu,
+        <br>&emsp;&emsp;Dans le cadre de nos études, nous avons développé un jeu mobile ayant pour objectif de faire visiter les lieux les plus emblématiques de Lyon. Tout en découvrant les merveilles de la ville, vous serez transportés dans une histoire imaginée par nos scénaristes. En espérant que vous apprécierez votre visite et notre jeu,
         <br><br>&emsp;&emsp;&emsp;&emsp; L'équipe Lugdunum
       </p>
       <p style= "align-self: center; float: right; text-align: justify; font-size: 140%; padding-left: 5%; padding-right: 5%;">

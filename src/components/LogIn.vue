@@ -4,12 +4,27 @@
       <img class="mascotte" src="./img/mascotte_02.png" alt="mascotte rhino">
     </div>
     <div class="loginStuff">
-      <input v-model="usernameContent">
-      <input v-model="passwordContent">
+      <div class="loginInputs">
+        <p style="width: 30%; font-size: 140%;">
+          Nom d'utilisateur:
+        </p>
+        <input v-model="usernameContent">
+      </div>
+      <div class="loginInputs">
+        <p style="width: 30%; font-size: 140%;">
+          Mot de passe:
+        </p>
+        <input v-model="passwordContent">
+      </div>
       <button class="button" @click="loginUser()"><span>Se Connecter </span></button>
 
       <button class="button" @click="createUser()"><span>S'enregistrer</span></button>
-      <p style="align-self: center; text-align: center; background-color: #faebd7B0; margin: 5%; color: #580000"> {{ loginMessage }} </p>
+      <p style="align-self: center; text-align: center; font-size: 130%; background-color: #faebd7B0; margin: 5%; color: #580000"> {{ loginMessage }} </p>
+      <div>
+        <p style="align-self: center; text-align: center; font-size: 130%;">
+          Connecté en tant que: "{{user.username}}";
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -24,9 +39,9 @@ import {
 export default {
   data: function(){
     return {
-      user: { username: 'user' },
-      usernameContent: 'Nom d\'utilisateur',
-      passwordContent: 'Mot de Passe',
+      user: { username: 'Guest' },
+      usernameContent: '',
+      passwordContent: '',
       loginID: -1,
       loginMessage: ''
     }
@@ -36,7 +51,11 @@ export default {
       this.$apollo.mutate({
         mutation: REGISTER_USER,
         variables: { username: this.usernameContent, password: this.passwordContent },
-      });
+      })
+        .catch(error => {
+          //console.log(error);
+          this.loginMessage = "Ce nom d'utilisateur est déjà utilisé !";
+        })
     },
     loginUser(){
       this.$apollo.query({
@@ -67,10 +86,10 @@ export default {
         variables: {id: this.loginID},
       })
         .then(result => {
-          console.log(result.data);
+          this.user = result.data.user;
         })
         .catch(err => {
-          console.log(err);
+          //console.log(err);
         });
     }
   },

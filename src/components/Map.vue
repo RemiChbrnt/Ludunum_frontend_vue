@@ -32,16 +32,15 @@
 
         <button class="button" @click="filterLocalizations()"><span>AFFICHER</span></button>
         <div style="width: 90%; background-color: #faebd780 ; align-self: center; margin-top: 5%">
-          <h1 style="text-align: center">Affichage des...</h1>
           <p style="align-self: center; text-align: center; font-size: 150%; padding-left: 5%; padding-right: 5%">
-            ... Joueurs connectés entre le
+            Affichage des Joueurs connectés entre le
             <br> {{ convertDate2String(new Date(dateStart)) }}
             <br> et le {{ convertDate2String(new Date(dateEnd)) }}</p>
         </div>
 
         <div style="width: 90%; align-self: center; margin-top: 5%">
           <div>
-            <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%; margin-top: 2%">
+            <p style="width: 100%; text-align: justify; font-size: 130%; padding-left: 5%; padding-right: 5%; margin-top: 2%">
               Nombre de localisations: {{ filteredLocalizations.length }}
               <br> Nombre de joueurs différents: {{ nbUsers }}
             </p>
@@ -52,7 +51,7 @@
             </p>
           </div>
           <div>
-            <p style="width: 100%; text-align: justify; font-size: 120%; padding-left: 5%; padding-right: 5%">
+            <p style="width: 100%; text-align: justify; font-size: 130%; padding-left: 5%; padding-right: 5%">
               ID Utilisateur: {{ selectedMarker.userId }}
               <br> Date: {{ dateSelectedMarker }}
               <br> Longitude: {{ selectedMarker.lng }}
@@ -104,11 +103,9 @@ export default {
     calcNumberUsers(){
       this.nbUsers = 0;
       let usersFound = []
-      console.log("wtffffffffffffff");
       for (let i=0; i<this.filteredLocalizations.length; i++){
         if(usersFound.indexOf(this.filteredLocalizations[i].userId) == -1) {
           this.nbUsers += 1;
-          console.log(i);
           usersFound.push(this.filteredLocalizations[i].userId);
         }
       }
